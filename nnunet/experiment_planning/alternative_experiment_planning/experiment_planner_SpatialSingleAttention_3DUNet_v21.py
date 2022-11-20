@@ -34,13 +34,13 @@ from nnunet.paths import *
 from nnunet.network_architecture.generic_modular_custom_UNet import GenericSpatialSingleAttentionUNet
 
 
-class ExperimentPlanner3DGenericSpatialAttentionUNet_v21(ExperimentPlanner3D_v21):
+class ExperimentPlanner3DSpatialSingleAttentionUNet_v21(ExperimentPlanner3D_v21):
     """ Planner for the Fully GenericAttentionUNet 3D UNet"""
     def __init__(self, folder_with_cropped_data, preprocessed_output_folder):
-        super(ExperimentPlanner3DGenericSpatialAttentionUNet_v21, self).__init__(folder_with_cropped_data, preprocessed_output_folder)
+        super(ExperimentPlanner3DGenericSpatialSingleAttentionUNet_v21, self).__init__(folder_with_cropped_data, preprocessed_output_folder)
         self.data_identifier = "nnUNetData_plans_v2.1"  # "nnUNetData_FabiansResUNet_v2.1"
         self.plans_fname = join(self.preprocessed_output_folder,
-                                "nnUNetPlans_GenericSpatialAttentionUNet_v2.1_plans_3D.pkl")
+                                "nnUNetPlans_SpatialSingleAttentionUNet_v2.1_plans_3D.pkl")
 
     def get_properties_for_stage(self, current_spacing, original_spacing, original_shape, num_cases,
                                  num_modalities, num_classes):

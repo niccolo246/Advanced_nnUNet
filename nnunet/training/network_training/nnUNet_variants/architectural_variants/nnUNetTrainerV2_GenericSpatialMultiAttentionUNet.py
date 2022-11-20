@@ -29,14 +29,14 @@ from typing import Tuple
 
 import numpy as np
 import torch
-from nnunet.network_architecture.generic_modular_custom_UNet import GenericAttentionUNet, get_default_network_config
+from nnunet.network_architecture.generic_modular_custom_UNet import GenericSpatialMultiAttentionUNet, get_default_network_config
 from nnunet.network_architecture.initialization import InitWeights_He
 from nnunet.training.network_training.nnUNetTrainer import nnUNetTrainer
 from nnunet.training.network_training.nnUNetTrainerV2 import nnUNetTrainerV2
 from nnunet.utilities.nd_softmax import softmax_helper
 
 
-class nnUNetTrainerV2_GenericAttentionUNet(nnUNetTrainerV2):
+class nnUNetTrainerV2_SpatialMultiAttentionUNet(nnUNetTrainerV2):
     """Network Trainer for Fully Residual UNet"""
     def initialize_network(self):
         if self.threeD:
@@ -53,7 +53,7 @@ class nnUNetTrainerV2_GenericAttentionUNet(nnUNetTrainerV2):
         blocks_per_stage_decoder = stage_plans['num_blocks_decoder']  # check if this need to be changed and what to
         pool_op_kernel_sizes = stage_plans['pool_op_kernel_sizes']
 
-        self.network = GenericAttentionUNet(input_channels=self.num_input_channels, base_num_features=self.base_num_features,
+        self.network = GenericSpatialMultiAttentionUNet(input_channels=self.num_input_channels, base_num_features=self.base_num_features,
                                             num_blocks_per_stage_encoder=blocks_per_stage_encoder, feat_map_mul_on_downscale=2,
                                             pool_op_kernel_sizes=pool_op_kernel_sizes, conv_kernel_sizes=conv_kernel_sizes,
                                             props=cfg, num_classes=self.num_classes,

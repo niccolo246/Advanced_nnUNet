@@ -31,16 +31,16 @@ import numpy as np
 from nnunet.experiment_planning.experiment_planner_baseline_3DUNet_v21 import ExperimentPlanner3D_v21
 from nnunet.experiment_planning.common_utils import get_pool_and_conv_props
 from nnunet.paths import *
-from nnunet.network_architecture.generic_modular_custom_UNet import GenericSingleAttentionUNet
+from nnunet.network_architecture.generic_modular_custom_UNet import GenericSpatialMultiAttentionUNet
 
 
-class ExperimentPlanner3DGenericSingleAttentionUNet_v21(ExperimentPlanner3D_v21):
-    """ Planner for the Fully GenericAttentionUNet 3D UNet"""
+class ExperimentPlanner3DSpatialMultiAttentionUNet_v21(ExperimentPlanner3D_v21):
+    """ Planner for the GenericSpatialMultiAttentionUNet 3D UNet"""
     def __init__(self, folder_with_cropped_data, preprocessed_output_folder):
-        super(ExperimentPlanner3DGenericSingleAttentionUNet_v21, self).__init__(folder_with_cropped_data, preprocessed_output_folder)
+        super(ExperimentPlanner3DSpatialMultiAttentionUNet_v21, self).__init__(folder_with_cropped_data, preprocessed_output_folder)
         self.data_identifier = "nnUNetData_plans_v2.1"  # "nnUNetData_FabiansResUNet_v2.1"
         self.plans_fname = join(self.preprocessed_output_folder,
-                                "nnUNetPlans_GenericSingleAttentionUNet_v2.1_plans_3D.pkl")
+                                "nnUNetPlans_SpatialMultiAttentionUNet_v2.1_plans_3D.pkl")
 
     def get_properties_for_stage(self, current_spacing, original_spacing, original_shape, num_cases,
                                  num_modalities, num_classes):
@@ -71,11 +71,11 @@ class ExperimentPlanner3DGenericSingleAttentionUNet_v21(ExperimentPlanner3D_v21)
                                                              self.unet_featuremap_min_edge_length,
                                                              self.unet_max_numpool)
         pool_op_kernel_sizes = [[1, 1, 1]] + pool_op_kernel_sizes
-        blocks_per_stage_encoder = GenericSingleAttentionUNet.default_blocks_per_stage_encoder[:len(pool_op_kernel_sizes)]
-        blocks_per_stage_decoder = GenericSingleAttentionUNet.default_blocks_per_stage_decoder[:len(pool_op_kernel_sizes) - 1]
+        blocks_per_stage_encoder = GenericSpatialMultiAttentionUNet.default_blocks_per_stage_encoder[:len(pool_op_kernel_sizes)]
+        blocks_per_stage_decoder = GenericSpatialMultiAttentionUNet.default_blocks_per_stage_decoder[:len(pool_op_kernel_sizes) - 1]
 
-        ref = GenericSingleAttentionUNet.use_this_for_3D_configuration
-        here = GenericSingleAttentionUNet.compute_approx_vram_consumption(input_patch_size, self.unet_base_num_features,
+        ref = GenericSpatialMultiAttentionUNet.use_this_for_3D_configuration
+        here = GenericSpatialMultiAttentionUNet.compute_approx_vram_consumption(input_patch_size, self.unet_base_num_features,
                                                            self.unet_max_num_filters, num_modalities, num_classes,
                                                            pool_op_kernel_sizes, blocks_per_stage_encoder,
                                                            blocks_per_stage_decoder, 2, self.unet_min_batch_size,)
@@ -98,15 +98,15 @@ class ExperimentPlanner3DGenericSingleAttentionUNet_v21(ExperimentPlanner3D_v21)
                                                                  self.unet_max_numpool,
                                                                  )
             pool_op_kernel_sizes = [[1, 1, 1]] + pool_op_kernel_sizes
-            blocks_per_stage_encoder = GenericSingleAttentionUNet.default_blocks_per_stage_encoder[:len(pool_op_kernel_sizes)]
-            blocks_per_stage_decoder = GenericSingleAttentionUNet.default_blocks_per_stage_decoder[:len(pool_op_kernel_sizes) - 1]
-            here = GenericSingleAttentionUNet.compute_approx_vram_consumption(new_shp, self.unet_base_num_features,
+            blocks_per_stage_encoder = GenericSpatialMultiAttentionUNet.default_blocks_per_stage_encoder[:len(pool_op_kernel_sizes)]
+            blocks_per_stage_decoder = GenericSpatialMultiAttentionUNet.default_blocks_per_stage_decoder[:len(pool_op_kernel_sizes) - 1]
+            here = GenericSpatialMultiAttentionUNet.compute_approx_vram_consumption(new_shp, self.unet_base_num_features,
                                                                self.unet_max_num_filters, num_modalities, num_classes,
                                                                pool_op_kernel_sizes, blocks_per_stage_encoder,
                                                                blocks_per_stage_decoder, 2, self.unet_min_batch_size)
         input_patch_size = new_shp
 
-        batch_size = GenericSingleAttentionUNet.default_min_batch_size
+        batch_size = GenericSpatialMultiAttentionUNet.default_min_batch_size
         batch_size = int(np.floor(max(ref / here, 1) * batch_size))
 
         # check if batch size is too large

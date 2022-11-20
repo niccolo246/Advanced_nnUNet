@@ -36,7 +36,7 @@ from nnunet.training.network_training.nnUNetTrainerV2 import nnUNetTrainerV2
 from nnunet.utilities.nd_softmax import softmax_helper
 
 
-class nnUNetTrainerV2_GenericSingleSpatialAttentionUNet(nnUNetTrainerV2):
+class nnUNetTrainerV2_SpatialSingleAttentionUNet(nnUNetTrainerV2):
     """Network Trainer for Fully Residual UNet"""
     def initialize_network(self):
         if self.threeD:
@@ -54,11 +54,11 @@ class nnUNetTrainerV2_GenericSingleSpatialAttentionUNet(nnUNetTrainerV2):
         pool_op_kernel_sizes = stage_plans['pool_op_kernel_sizes']
 
         self.network = GenericSpatialSingleAttentionUNet(input_channels=self.num_input_channels, base_num_features=self.base_num_features,
-                                                         num_blocks_per_stage_encoder=blocks_per_stage_encoder, feat_map_mul_on_downscale=2,
-                                                         pool_op_kernel_sizes=pool_op_kernel_sizes, conv_kernel_sizes=conv_kernel_sizes,
-                                                         props=cfg, num_classes=self.num_classes,
-                                                         num_blocks_per_stage_decoder=blocks_per_stage_decoder, deep_supervision=True,
-                                                         upscale_logits=False, max_features=320, initializer=InitWeights_He(1e-2))
+                                                  num_blocks_per_stage_encoder=blocks_per_stage_encoder, feat_map_mul_on_downscale=2,
+                                                  pool_op_kernel_sizes=pool_op_kernel_sizes, conv_kernel_sizes=conv_kernel_sizes,
+                                                  props=cfg, num_classes=self.num_classes,
+                                                  num_blocks_per_stage_decoder=blocks_per_stage_decoder, deep_supervision=True,
+                                                  upscale_logits=False, max_features=320, initializer=InitWeights_He(1e-2))
 
         if torch.cuda.is_available():
             self.network.cuda()
