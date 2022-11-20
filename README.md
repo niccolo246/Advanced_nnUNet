@@ -1,5 +1,12 @@
 # Extended nnUNet
 
+Users can explore the use of various UNet inspired architectures integrated into the nnUNet framework, and compare performance of architectural variations in a consistent and transperent fashion, with network architecture being the only independent variable between comparisons with respect to a single dataset. For more details refer to the originl article:
+
+
+    Paper coming soon ...
+
+
+
 nnUNet was developed by Isensee et al. and further information on the original framework may be found by reading the following original paper:
 
 
@@ -10,11 +17,6 @@ The nnUNet is a fully automated and generalisable framework which automatically 
 
 The nnUNet utilises a standard UNet type architecture which is self-configuring in terms of both depth and hyperparameters. 
 We extend the original [nnUNet code](https://github.com/MIC-DKFZ/nnUNet) by integrating features found in more advanced UNet variations, namely residual blocks, dense blocks, and inception blocks. 
-
-Users can explore the use of various UNet inspired architectures integrated into the nnUNet framework, and compare performance in a consistent and transperent fashion, with network architecture being the only independent variable between comparions with respect to a single dataset. This is evidenced in the following article:
-
-
-    Paper coming soon ...
 
 Note: If making use of this source code please reference both the above papers.
 
