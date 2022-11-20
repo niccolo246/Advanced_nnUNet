@@ -139,19 +139,19 @@ We here concentrate on inference demonstrations using the 3D full-resolution con
 
 Run the following depending on which architecture one wishes to experiment inference with:
 
-##### Residual UNet:
+##### Residual-nnUNet:
 
 ```bash
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -m 3d_fullres -p nnUNetPlans_ResidualUNet_v2.1 -tr nnUNetTrainerV2_ResidualUNet
 ```
 
-##### Inception UNet:
+##### Inception-nnUNet:
 
 ```bash
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -m 3d_fullres -p nnUNetPlans_InceptionUNet_v2.1 -tr nnUNetTrainerV2_InceptionUNet
 ```
 
-##### Dense UNet:
+##### Dense-nnUNet:
 
 ```bash
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -m 3d_fullres -p nnUNetPlans_DenseUNet_v2.1 -tr nnUNetTrainerV2_DenseUNet
