@@ -1853,10 +1853,10 @@ class GenericSpatialMultiAttentionUNet(SegmentationNetwork):
         return enc + dec
 
 
-class GenericChannelSpatialAttentionUNetDecoder(nn.Module):
+class GenericSpatialSingleAttentionUNetDecoder(nn.Module):
     def __init__(self, previous, num_classes, num_blocks_per_stage=None, network_props=None, deep_supervision=False,
                  upscale_logits=False):
-        super(GenericChannelSpatialAttentionUNetDecoder, self).__init__()
+        super(GenericSpatialSingleAttentionUNetDecoder, self).__init__()
         self.num_classes = num_classes
         self.deep_supervision = deep_supervision
         """
@@ -2002,7 +2002,7 @@ class GenericChannelSpatialAttentionUNetDecoder(nn.Module):
         return tmp * batch_size
 
 
-class GenericChannelSpatialAttentionUNet(SegmentationNetwork):
+class GenericSpatialSingleAttentionUNet(SegmentationNetwork):
 
     use_this_for_2D_configuration = 1162116860.5  # 1167982592.0
     use_this_for_3D_configuration = 1162116860.5
@@ -2019,7 +2019,7 @@ class GenericChannelSpatialAttentionUNet(SegmentationNetwork):
     def __init__(self, input_channels, base_num_features, num_blocks_per_stage_encoder, feat_map_mul_on_downscale,
                  pool_op_kernel_sizes, conv_kernel_sizes, props, num_classes, num_blocks_per_stage_decoder,
                  deep_supervision=False, upscale_logits=False, max_features=320, initializer=None):
-        super(GenericChannelSpatialAttentionUNet, self).__init__()
+        super(GenericSpatialSingleAttentionUNet, self).__init__()
         self.conv_op = props['conv_op']
         self.num_classes = num_classes
 
@@ -2043,7 +2043,7 @@ class GenericChannelSpatialAttentionUNet(SegmentationNetwork):
                                                                           num_modalities, pool_op_kernel_sizes,
                                                                           num_conv_per_stage_encoder,
                                                                           feat_map_mul_on_downscale, batch_size)
-        dec = GenericChannelSpatialAttentionUNetDecoder.compute_approx_vram_consumption(patch_size, base_num_features, max_num_features,
+        dec = GenericSpatialSingleAttentionUNetDecoder.compute_approx_vram_consumption(patch_size, base_num_features, max_num_features,
                                                                                 num_classes, pool_op_kernel_sizes,
                                                                                 num_conv_per_stage_decoder,
                                                                                 feat_map_mul_on_downscale, batch_size)
