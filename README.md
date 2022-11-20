@@ -11,7 +11,7 @@ The nnUNet is a fully automated and generalisable framework which automatically 
 The nnUNet utilises a standard UNet type architecture which is self-configuring in terms of both depth and hyperparameters. 
 We extend the original [nnUNet code](https://github.com/MIC-DKFZ/nnUNet) by integrating features found in more advanced UNet variations, namely residual blocks, dense blocks, and inception blocks. 
 
-Users can then easily experiment with a range of different UNet architectural variations within the nnUNet framework and may choose the architecture variation which performs optimally depending on the dataset in question. This is evidenced in the following paper:
+Users can explore the use of various UNet inspired architectures integrated into the nnUNet framework, and compare performance in a consistent and transperent fashion, with network architecture being the only independent variable between comparions with respect to a single dataset. This is evidenced in the following article:
 
 
     Paper coming soon ...
@@ -32,8 +32,8 @@ The following instructions are specific to the running of the nnUNet integrated 
 To install, clone the git page and use pip install. Make sure latest version of PyTorch is installed. 
 
 
-          git clone https://github.com/niccolo246/Extended_nnUNet.git 
-          cd Extended_nnUNet
+          git clone https://github.com/niccolo246/Advanced_nnUNet.git 
+          cd nnUNet
           pip install -e .
         
 
