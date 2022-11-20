@@ -1,6 +1,6 @@
 # Extended nnUNet
 
-Users can explore the use of various UNet inspired architectures integrated into the nnUNet framework, and compare performance of architectural variations in a consistent and transperent fashion, with network architecture being the only independent variable between comparisons with respect to a single dataset. For more details refer to the originl article:
+Users can explore the use of various UNet inspired architectures integrated into the nnUNet framework, and compare performance of architectural variations in a consistent and transperent fashion, with network architecture being the only independent variable between comparisons with respect to a single dataset. For more details refer to the original article:
 
 
     Paper coming soon ...
