@@ -35,7 +35,7 @@ To install, clone the git page and use pip install. Make sure latest version of 
 
 
           git clone https://github.com/niccolo246/Advanced_nnUNet
-          cd nnUNet
+          cd Advanced_nnUNet
           pip install -e .
         
 
