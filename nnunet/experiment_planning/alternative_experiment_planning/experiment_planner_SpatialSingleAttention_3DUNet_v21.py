@@ -37,7 +37,7 @@ from nnunet.network_architecture.generic_modular_custom_UNet import GenericSpati
 class ExperimentPlanner3DSpatialSingleAttentionUNet_v21(ExperimentPlanner3D_v21):
     """ Planner for the Fully GenericAttentionUNet 3D UNet"""
     def __init__(self, folder_with_cropped_data, preprocessed_output_folder):
-        super(ExperimentPlanner3DGenericSpatialSingleAttentionUNet_v21, self).__init__(folder_with_cropped_data, preprocessed_output_folder)
+        super(ExperimentPlanner3DSpatialSingleAttentionUNet_v21, self).__init__(folder_with_cropped_data, preprocessed_output_folder)
         self.data_identifier = "nnUNetData_plans_v2.1"  # "nnUNetData_FabiansResUNet_v2.1"
         self.plans_fname = join(self.preprocessed_output_folder,
                                 "nnUNetPlans_SpatialSingleAttentionUNet_v2.1_plans_3D.pkl")
