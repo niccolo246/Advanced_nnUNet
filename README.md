@@ -22,7 +22,7 @@ Note: If making use of this source code please reference both the above papers.
 
 Below a brief guide to using the modified nnUNet framework is presented which is based on the original nnUNet guide by Isensee et al. For a more detailed/insightful explanation please refer to the [original nnUNet repository](https://github.com/MIC-DKFZ/nnUNet).
 
-Note: The code in this repository is derived from the original nnUNet repository and is identical except for the modification/addition of the following files: `experiment_planner_dense3DUNet_v21.py`, `experiment_planner_inception3DUNet_v21.py`, `experiment_planner_residual3DUNet_v21.py`, `experiment_planner_Attention_3DUNet_v21.py`, `experiment_planner_SingleAttention_3DUNet_v21.py`, `experiment_planner_SpatialSingleAttention_3DUNet_v21.py`, `conv_blocks.py`, `generic_modular_custom_UNet.py`, `generic_modular_UNet.py`, `nnUNetTrainerV2_DenseUNet.py`, `nnUNetTrainerV2_InceptionUNet.py`, `nnUNetTrainerV2_ResidualUNet.py`, `nnUNetTrainerV2_GenericAttentionUNet.py`, `nnUNetTrainerV2_GenericSingleAttentionUNet.py`, `nnUNetTrainerV2_GenericSpatialSingleAttentionUNet.py`.
+Note: The code in this repository is derived from the original nnUNet repository and is identical except for the modification/addition of the following files: `experiment_planner_dense3DUNet_v21.py`, `experiment_planner_inception3DUNet_v21.py`, `experiment_planner_residual3DUNet_v21.py`, `experiment_planner_SpatialMultiAttention_3DUNet_v21.py`, `experiment_planner_SpatialSingleAttention_3DUNet_v21.py`, `experiment_planner_ChannelSpatialAttention_3DUNet_v21.py`, `conv_blocks.py`, `generic_modular_custom_UNet.py`, `generic_modular_UNet.py`, `nnUNetTrainerV2_DenseUNet.py`, `nnUNetTrainerV2_InceptionUNet.py`, `nnUNetTrainerV2_ResidualUNet.py`, `nnUNetTrainerV2_GenericSpatialMultiAttentionUNet.py`, `nnUNetTrainerV2_GenericSpatialSingleAttentionUNet.py`, `nnUNetTrainerV2_GenericChannelSpatialAttentionUNet.py`.
 
 
 The following instructions are specific to the running of the nnUNet integrated Residual, Inception, and Dense variations of the UNet. 
@@ -72,19 +72,19 @@ nnUNet_plan_and_preprocess -t TASK_ID -pl3d ExperimentPlanner3DDenseUNet_v21
 ##### Spatial-Single-Attention-nnUNet:
 
 ```bash
-nnUNet_plan_and_preprocess -t TASK_ID -pl3d ExperimentPlanner3DGenericSingleAttentionUNet_v21
+nnUNet_plan_and_preprocess -t TASK_ID -pl3d ExperimentPlanner3DSpatialSingleAttentionUNet_v21
 ```
 
 ##### Spatial-Multi-Attention-nnUNet:
 
 ```bash
-nnUNet_plan_and_preprocess -t TASK_ID -pl3d ExperimentPlanner3DGenericAttentionUNet_v21
+nnUNet_plan_and_preprocess -t TASK_ID -pl3d ExperimentPlanner3DSpatialMultiAttentionUNet_v21
 ```
 
 ##### Channel-Spatial-Attention-nnUNet:
 
 ```bash
-nnUNet_plan_and_preprocess -t TASK_ID -pl3d ExperimentPlanner3DGenericSpatialAttentionUNet_v21
+nnUNet_plan_and_preprocess -t TASK_ID -pl3d ExperimentPlanner3DChannelSpatialAttentionUNet_v21
 ```
 
 
@@ -115,19 +115,19 @@ nnUNet_train 3d_fullres nnUNetTrainerV2_DenseUNet TASK_NAME_OR_ID FOLD -p nnUNet
 ##### Spatial-Single-Attention-nnUNet:
 For FOLD in [0, 1, 2, 3, 4], run:
 ```bash
-nnUNet_train 3d_fullres nnUNetTrainerV2_GenericSingleAttentionUNet TASK_NAME_OR_ID FOLD -p nnUNetPlans_GenericSingleAttentionUNet_v2.1
+nnUNet_train 3d_fullres nnUNetTrainerV2_SpatialSingleAttentionUNet TASK_NAME_OR_ID FOLD -p nnUNetPlans_SpatialSingleAttentionUNet_v2.1
 ```
 
 ##### Spatial-Multi-Attention-nnUNet:
 For FOLD in [0, 1, 2, 3, 4], run:
 ```bash
-nnUNet_train 3d_fullres nnUNetTrainerV2_GenericAttentionUNet TASK_NAME_OR_ID FOLD -p nnUNetPlans_GenericAttentionUNet_v2.1
+nnUNet_train 3d_fullres nnUNetTrainerV2_SpatialMultiAttentionUNet TASK_NAME_OR_ID FOLD -p nnUNetPlans_SpatialMultiAttentionUNet_v2.1
 ```
 
 ##### Channel-Spatial-Attention-nnUNet:
 For FOLD in [0, 1, 2, 3, 4], run:
 ```bash
-nnUNet_train 3d_fullres nnUNetTrainerV2_GenericSingleSpatialAttentionUNet TASK_NAME_OR_ID FOLD -p nnUNetPlans_GenericSpatialAttentionUNet_v2.1
+nnUNet_train 3d_fullres nnUNetTrainerV2_ChannelSpatialAttentionUNet TASK_NAME_OR_ID FOLD -p nnUNetPlans_ChannelSpatialAttentionUNet_v2.1
 ```
 
 Note: as discussed in the [original nnUNet repository](https://github.com/MIC-DKFZ/nnUNet), one does not have to run training on all folds for inference to run (running full training on one fold only is sufficient).
@@ -159,17 +159,17 @@ nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -m 3d_fullres
 
  ##### Spatial-Single-Attention-nnUNet:
 ```bash
-nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -m 3d_fullres -p nnUNetPlans_GenericSingleAttentionUNet_v2.1 -tr nnUNetTrainerV2_GenericSingleAttentionUNet
+nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -m 3d_fullres -p nnUNetPlans_SpatialSingleAttentionUNet_v2.1 -tr nnUNetTrainerV2_SpatialSingleAttentionUNet
 ```
 
 ##### Spatial-Multi-Attention-nnUNet:
 ```bash
-nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -m 3d_fullres -p nnUNetPlans_GenericAttentionUNet_v2.1 -tr nnUNetTrainerV2_GenericAttentionUNet
+nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -m 3d_fullres -p nnUNetPlans_SpatialMultiAttentionUNet_v2.1 -tr nnUNetTrainerV2_SpatialMultiAttentionUNet
 ```
 
 ##### Channel-Spatial-Attention-nnUNet:
 ```bash
-nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -m 3d_fullres -p nnUNetPlans_GenericSpatialAttentionUNet_v2.1 -tr nnUNetTrainerV2_GenericSingleSpatialAttentionUNet
+nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -m 3d_fullres -p nnUNetPlans_ChannelSpatialAttentionUNet_v2.1 -tr nnUNetTrainerV2_ChannelSpatialAttentionUNet
 ```
 
-Note: For information on network ensembling refer to [original nnUNet repository](https://github.com/MIC-DKFZ/nnUNet). 
+Note: For information on network ensembling refer to [original nnUNet repository](https://github.com/MIC-DKFZ/nnUNet).
