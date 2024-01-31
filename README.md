@@ -3,7 +3,8 @@
 Users can explore the use of various UNet inspired architectures integrated into the nnUNet framework, and compare performance of architectural variations in a consistent and transperent fashion, with network architecture being the only independent variable between comparisons with respect to a single dataset. For more details refer to the original article:
 
 
-    McConnell N, Ndipenoch N, Cao Y, Miron A, Li Y. Exploring advanced architectural variations of nnUNet. Neurocomputing. 2023 Dec 1;560:126837.
+    McConnell N, Ndipenoch N, Cao Y, Miron A, Li Y. Exploring advanced architectural variations of nnUNet. 
+    Neurocomputing. 2023 Dec 1;560:126837.
 
 
 
